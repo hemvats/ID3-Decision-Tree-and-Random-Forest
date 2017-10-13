@@ -1,0 +1,78 @@
+import java.lang.*;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.lang.reflect.*;
+
+
+public class Noode_2
+{
+	
+	int id;
+	Integer marrk[] = new Integer [14];
+	//int ref[];
+	int leaf=0;
+	int verdict=-1;
+	ArrayList <Integer []> Tdata;
+	//for array of childs
+	ArrayList <Noode_2> childs;
+	public static Integer[] count = {4,8,2,16,2,7,14,6,5,2,2,2,2,41};
+	public static String[] strAttr = {"age","work","fnl","ed","ednum","mar","ocp","rel","race","sex","capgain","caploss","hrspw","cntry"};
+	Noode_2(int n,ArrayList <Integer[]> Trdata, Integer mark[])
+	{
+		for (int i=0;i<14;i++) marrk[i]=0;
+		this.id=n;
+		//this.ref=mark;
+		for (int i=0;i<14;i++) this.marrk[i]=mark[i];
+		this.marrk[n]=1;
+		//this.Tdata = Tdata;
+		mark=null;
+		System.out.println("fine ln 2.4.1");
+		
+		Tdata = new ArrayList <Integer[]>();
+		for (int i=0;i<Trdata.size();i++) Tdata.add(Trdata.get(i));
+		Trdata = null;
+
+		childs = new ArrayList <Noode_2>();
+		
+		System.out.println("fine ln 2.4.2");
+
+		int flag=0;
+		for (int i=0;i<marrk.length;i++)
+		{
+			if(marrk[i]==0) flag=1;
+		}
+		//if(flag==0) this.leaf=1;
+		System.out.println("fine ln 2.4.3");
+		System.out.println(count[n]);
+		if((flag==0) && (this.leaf==0))
+		{
+			this.leaf=1;
+			/*for (int i=0;i<count[n];i++)
+			{
+				System.out.println("fine ln 2.4.4");
+
+				Noode_2 lef = new Noode_2(n,this.Tdata,this.marrk);
+				
+				System.out.println("fine ln 2.4.5");
+				
+				lef.leaf=1;
+				this.childs.add(lef); 
+			}*/
+		}
+
+		Integer p1=0;
+		Integer [] arr;
+		for (int i=0;i<Tdata.size();i++)
+		{
+			arr=Tdata.get(i);
+			if(arr[14]==1) p1++;
+		}
+		if(p1==0 || p1==Tdata.size())
+			this.leaf=1;
+		//childs=null;
+	}
+}
